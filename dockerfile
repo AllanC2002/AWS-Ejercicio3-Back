@@ -8,4 +8,4 @@ RUN pip install -r requirements.txt
 
 EXPOSE 8080
 
-CMD ["Python","main.py"]
+CMD ["python","main.py"]

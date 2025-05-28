@@ -37,5 +37,18 @@ def pais():
         return jsonify({'error': 'No se pudo obtener el país'}), 500
 
 
+@app.route("/consejo", methods=["GET"])
+def consejo():
+    response = requests.get('https://api.adviceslip.com/advice')
+    if response.status_code == 200:
+        data = response.json() 
+        consejo = data['slip']['advice']
+        return jsonify({'consejo': consejo})
+    else:
+        return jsonify({'error': 'No se pudo obtener el consejo'}), 500
+
+
+
+
 if __name__=="__main__":
     app.run(debug=True, host="0.0.0.0", port=8080)

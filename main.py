@@ -7,7 +7,7 @@ app = Flask(__name__)
 def clima():
     # Ejemplo: clima en Quito (latitud y longitud)
     lat = -0.22
-    lon = -78.5
+    lon = -78
     url = f'https://api.open-meteo.com/v1/forecast?latitude={lat}&longitude={lon}&current_weather=true'
 
     # Hacemos la petición a la API externa

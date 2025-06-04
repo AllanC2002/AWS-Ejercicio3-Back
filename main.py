@@ -32,14 +32,14 @@ def pais():
         data = response.json()[0]
         capital = data['capital'][0]
         lat, lon = data['capitalInfo']['latlng']
-        
+        """
         registros.insert_one({ #bd
             "nombre": name,
             "capital": capital,
             "latitud": lat,
             "longitud": lon
         })
-        
+        """
         return jsonify([capital, lat, lon])
     else:
         return jsonify({'error': 'No se pudo obtener el país'}), 500

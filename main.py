@@ -4,7 +4,7 @@ from pymongo import MongoClient
 
 app = Flask(__name__)
 
-client = MongoClient("mongodb://3.90.105.106:27017/")  # ip
+client = MongoClient("mongodb://3.82.52.70:27017/")  # ip
 db = client["paises"]
 registros = db["registros"]
 
@@ -32,14 +32,14 @@ def pais():
         data = response.json()[0]
         capital = data['capital'][0]
         lat, lon = data['capitalInfo']['latlng']
-        """
+        
         registros.insert_one({ #bd
             "nombre": name,
             "capital": capital,
             "latitud": lat,
             "longitud": lon
         })
-        """
+        
         return jsonify([capital, lat, lon])
     else:
         return jsonify({'error': 'No se pudo obtener el país'}), 500

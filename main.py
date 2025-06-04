@@ -32,14 +32,14 @@ def pais():
         data = response.json()[0]
         capital = data['capital'][0]
         lat, lon = data['capitalInfo']['latlng']
-
+        """
         registros.insert_one({ #bd
             "nombre": name,
             "capital": capital,
             "latitud": lat,
             "longitud": lon
         })
-
+        """
         return jsonify([capital, lat, lon])
     else:
         return jsonify({'error': 'No se pudo obtener el país'}), 500
@@ -58,6 +58,15 @@ def consejo():
         return jsonify({'consejo': consejo})
     else:
         return jsonify({'error': 'No se pudo obtener el consejo'}), 500
+
+@app.route("/api4")
+def api4():
+    name = request.args.get("name")
+    response=requests.get(f"https://rickandmortyapi.com/api/character/?name={name}")
+    if response.status_code== 200:
+        data=response.json()
+        image=data["results"][0]["image"]
+        return jsonify({"url":image})
 
 if __name__=="__main__":
     app.run(debug=True, host="0.0.0.0", port=8080)
